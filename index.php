@@ -1,3 +1,5 @@
 <?php
-    echo "Hello WOrld";
+
+$greeting = "Hello";
+echo "$greeting Everybody";
 ?>
