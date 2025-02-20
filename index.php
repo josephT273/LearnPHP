@@ -1,5 +1,5 @@
 <?php
+$heading = "Home";
 
-$greeting = "Hello";
-echo "$greeting Everybody";
-?>
+require 'functions.php';
+require 'views/index.view.php';

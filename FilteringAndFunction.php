@@ -41,4 +41,4 @@ $filteredBooks = array_filter($books,  function ($book) {
     return $book['releaseYear'] < 1950;
 });
 
-require 'filtered.view.php';
+require 'views/filtered.view.php';
