@@ -8,8 +8,8 @@
         </div>
         <div class="flex gap-8">
             <a href="/" class="<?= urlIs('/') ? 'bg-gray-950 text-white' : 'bg-gray-900'; ?> px-5 py-3 text-sm font-semibold">Home</a>
-            <a href="about.php" class="<?= urlIs('/about.php') ? 'bg-gray-950 text-white' : 'bg-gray-900'; ?> px-5 py-3 text-sm font-semibold">About</a>
-            <a href="contact.php" class="<?= urlIs('/contact.php') ? 'bg-gray-950 text-white' : 'bg-gray-900'; ?> px-5 py-3 text-sm font-semibold">Contact</a>
+            <a href="/about" class="<?= urlIs('/about') ? 'bg-gray-950 text-white' : 'bg-gray-900'; ?> px-5 py-3 text-sm font-semibold">About</a>
+            <a href="/contact" class="<?= urlIs('/contact') ? 'bg-gray-950 text-white' : 'bg-gray-900'; ?> px-5 py-3 text-sm font-semibold">Contact</a>
         </div>
     </nav>
 </header>
