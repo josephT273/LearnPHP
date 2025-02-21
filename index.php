@@ -2,16 +2,11 @@
 
 require 'functions.php';
 // require 'router.php';
+require 'Database.php';
 
-$dsn = "mysql:host=localhost;dbname=learn_php;user=root;pass=''charset=utf8mb4";
-$pdo = new PDO($dsn);
+$config = require('config.php');
 
-$statement = $pdo->prepare("SELECT * FROM posts");
+$db = new Database($config["database"], 'root', '');
+$post = $db->query("SELECT * FROM posts")->fetchAll(PDO::FETCH_ASSOC);
 
-$statement->execute();
-
-$posts = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-foreach($posts as $post) {
-    echo $post['title'] . '<br>';
-}
+dd($post);
