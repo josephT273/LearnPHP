@@ -1,15 +1,14 @@
 <?php
 
-$heading = "Create Note";
 
-$config = require('config.php');
-$config = require('Validator.php');
+$config = require(base_path('config.php'));
+require(base_path('Validator.php'));
+$errors = [];
 
 $db = new Database($config['database'], 'root', 'password');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $body = $_POST['body'];
-    $errors = [];
 
     if (!Validator::string($body, 1, 255)) {
         $errors['body'] = 'A body of no more than 255 characters is required.';
@@ -24,4 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-require 'views/notes/create.view.php';
+view('notes/create.view.php', [
+    'heading' => "Create Note",
+    'errors' => $errors
+]);
