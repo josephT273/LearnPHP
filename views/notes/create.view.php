@@ -1,4 +1,4 @@
-<?php require('partials/nav.php'); ?>
+<?php require(__DIR__ . '/../partials/nav.php'); ?>
 <main class="mx-auto py-6 px-6 sm:px-6 lg-8">
     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 w-full max-w-md">
         <form method="POST">

@@ -7,11 +7,13 @@ $db = new Database($config['database'], 'root', 'password');
 $id = $_GET['id'];
 
 $heading = "Note " . htmlspecialchars($id);
-$note = $db->query('SELECT * FROM notes WHERE id = :id', 
+$note = $db->query(
+    'SELECT * FROM notes WHERE id = :id',
     [
         'id' => $_GET['id']
-    ])->findOrFail();
+    ]
+)->findOrFail();
 
 authorize($note['user_id'] == 1);
 
-require 'views/note.view.php';
+require 'views/notes/show.view.php';

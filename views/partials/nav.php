@@ -16,4 +16,4 @@
     </nav>
 </header>
 
-<?php require('header.php'); ?>
+<?php require(__DIR__ . '/header.php'); ?>
