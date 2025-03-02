@@ -2,13 +2,12 @@
 
 use Core\Database;
 use Core\Validator;
+use Core\App;
+
+$db = App::resolve(Database::class);
 
 
-$config = require(base_path('config.php'));
 $errors = [];
-
-$db = new Database($config['database'], 'root', 'password');
-
 $body = $_POST['body'];
 
 if (!Validator::string($body, 1, 255)) {
