@@ -2,6 +2,13 @@
 
 use Core\Response;
 
+function abort($code = 404)
+{
+    http_response_code($code);
+    require base_path("controllers/{$code}.php");
+    die();
+}
+
 function dd($value)
 {
     echo "<pre>";
