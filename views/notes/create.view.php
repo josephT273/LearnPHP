@@ -6,9 +6,7 @@
                 <label for="body" class="block text-gray-700 text-sm font-bold mb-2">
                     Description
                 </label>
-                <textarea id="body" name="body" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    <?= trim(htmlspecialchars($_POST['body'] ?? '')) ?>
-                </textarea>
+                <textarea id="body" name="body" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"><?= $_POST['body'] ?? '' ?></textarea>
             </div>
             <?php if (isset($errors['body'])) : ?>
                 <p class="text-red-500 text-2xs mb-3"><?= $errors['body'] ?></p>
