@@ -1,3 +1,3 @@
 <?php
 
-view('registration/create.vew.php');
+view('registration/create.view.php');
