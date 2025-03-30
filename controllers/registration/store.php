@@ -11,7 +11,7 @@ $errors = [];
 // validate the form inputs
 
 if(!Validator::email($email)){
-    $errors['email'] = 'Plesase provide a valid email address';
+    $errors['email'] = 'Please provide a valid email address';
 }
 
 if(!Validator::string($password, 8, 255)){
@@ -42,9 +42,9 @@ if ($user) {
         'password' => password_hash($password, PASSWORD_BCRYPT),
     ]);
 
-    $_SESSION['user'] = [
-        'email' => $email,
-    ];
+    login($user);
+    
+    // Redirect to the home page after successful registration
     header("location: /");
     exit();
 }

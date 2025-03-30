@@ -8,7 +8,7 @@
         </div>
 
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form class="space-y-6" action="/register" method="POST">
+            <form class="space-y-6" action="/session" method="POST">
                 <div>
                     <label for="email" class="block text-sm/6 font-medium text-gray-900">Email address</label>
                     <div class="mt-2">
@@ -44,8 +44,8 @@
             </form>
 
             <p class="mt-10 text-center text-sm/6 text-gray-500">
-                Already have an account?
-                <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Sign in</a>
+                New here?
+                <a href="/register" class="font-semibold text-indigo-600 hover:text-indigo-500">Create an account</a>
             </p>
         </div>
     </div>

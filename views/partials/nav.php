@@ -9,13 +9,19 @@
             <div class="flex gap-8">
                 <a href="/" class="<?= urlIs('/') ? 'bg-gray-950 text-white' : 'bg-gray-900'; ?> px-5 py-3 text-sm font-semibold">Home</a>
                 <a href="/about" class="<?= urlIs('/about') ? 'bg-gray-950 text-white' : 'bg-gray-900'; ?> px-5 py-3 text-sm font-semibold">About</a>
-                <a href="/notes" class="<?= urlIs('/notes') ? 'bg-gray-950 text-white' : 'bg-gray-900'; ?> px-5 py-3 text-sm font-semibold">Notes</a>
+                <?php if($_SESSION['user'] ?? false) :?>
+                    <a href="/notes" class="<?= urlIs('/notes') ? 'bg-gray-950 text-white' : 'bg-gray-900'; ?> px-5 py-3 text-sm font-semibold">Notes</a>
+                <?php endif; ?>
                 <a href="/contact" class="<?= urlIs('/contact') ? 'bg-gray-950 text-white' : 'bg-gray-900'; ?> px-5 py-3 text-sm font-semibold">Contact</a>
             </div>
         </div>
         <div class="flex gap-8">
             <?php if($_SESSION['user'] ?? false): ?>
                 <img class="size-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                <form action="/session" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="<?= urlIs('/session') ? 'bg-gray-950 text-white' : 'bg-gray-900'; ?> px-5 py-3 text-sm font-semibold">Logout</button>
+                </form>
                 <?php else: ?>
                     <a href="/login" class="<?= urlIs('/login') ? 'bg-gray-950 text-white' : 'bg-gray-900'; ?> px-5 py-3 text-sm font-semibold">Login</a>
                     <a href="/register" class="<?= urlIs('/register') ? 'bg-gray-950 text-white' : 'bg-gray-900'; ?> px-5 py-3 text-sm font-semibold">Register</a>
