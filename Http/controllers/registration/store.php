@@ -1,50 +1,19 @@
 <?php
 
-use Core\App;
-use Core\Database;
-use Core\Validator;
+use Core\Authenticator;
+use Http\Forms\RegistrationForm;
 
-$email = $_POST['email'];
-$password = $_POST['password'];
+$form = RegistrationForm::validate($attributes = [
+    'email' => $_POST['email'],
+    'password' => $_POST['password']
+]);
 
-$errors = [];
-// validate the form inputs
+$registered = (new Authenticator())->register($attributes);
 
-if(!Validator::email($email)){
-    $errors['email'] = 'Please provide a valid email address';
+if (!$registered) {
+    $form->error(
+        'email', 'Email already taken'
+    )->throw();
 }
 
-if(!Validator::string($password, 8, 255)){
-    $errors['password'] = 'Password must be at least 8 character long';
-}
-
-if (!empty($errors)) {
-    return view('registration/create.view.php', [
-        'errors' => $errors,
-    ]);
-}
-
-$db = App::resolve(Database::class);
-
-//check if the account already exists
-$result = $db->query('SELECT * FROM users WHERE email = :email', [
-    'email' => $email
-])->find();
-
-// If user exists, redirect to the login page
-if ($user) {
-    header("location: /");
-    exit();
-}else{
-    // If user does not exist, create a new user
-    $db->query('INSERT INTO users (email, password) VALUES (:email, :password)', [
-        'email' => $email,
-        'password' => password_hash($password, PASSWORD_BCRYPT),
-    ]);
-
-    login($user);
-    
-    // Redirect to the home page after successful registration
-    header("location: /");
-    exit();
-}
+redirect("/");

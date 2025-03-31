@@ -3,12 +3,15 @@
 namespace Core;
 
 class Authenticator{
+
+    protected $db;
+
+    public function __construct(){
+        $this->db = App::resolve(Database::class);
+    }
     
     public function attempt($email, $password){
-        $user = App::resolve(Database::class)
-        ->query('SELECT * FROM users WHERE email = :email', [
-            'email' => $email
-        ])->find(); 
+        $user = $this->alreadyExist($email);
 
         if ($user) {
             if (password_verify($password, $user['password'])) {
@@ -23,6 +26,13 @@ class Authenticator{
         return false;
     }
 
+    public function alreadyExist($email){
+        $user = $this->db->query('SELECT * FROM users WHERE email = :email', [
+            'email' => $email
+        ])->find(); 
+
+        return $user ? true : false;
+    }
         
     public function login($user) {
 
@@ -31,7 +41,18 @@ class Authenticator{
         ];
 
         session_regenerate_id(true);
+    }
 
+    public function register($user) {
+        if($this->alreadyExist($user['email'])) return false;
+        
+        $this->db->query('INSERT INTO users (email, password) VALUES (:email, :password)', [
+            'email' => $user['email'],
+            'password' => password_hash($user['password'], PASSWORD_BCRYPT),
+        ]);
+
+        $this->login($user);
+        return true;
     }
 
     public function logout(){
